@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Floristería Detalles a su Gusto</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../resources/js/data.js"></script>
+    <script type="text/javascript" src="../resources/js/index.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand active" href="./index.html">DG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="./products.html">Productos <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="./stores.html">Locales</a>
+                <a class="nav-item nav-link" href="./categories.html">Categorías</a>
+                <a class="nav-item nav-link" href="./shoppingCard.html">Carrito</a>
+            </div>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="d-flex justify-content-center mt-5">
+            <h1>Floristería Detalles a su Gusto</h1>
+        </div>
+        <div class="container pb-3 pt-3 mt-5" id="categories">
+        </div>
+        <div class="d-flex justify-content-center mt-5 mb-5">
+            <hr class="w-100">
+            <h2 class="w-100 text-center">Lo Más Vendido</h2>
+            <hr class="w-100">
+        </div>
+        <div id="products" class="carousel slide bg-dark pt-3 pb-3" data-ride="carousel">
+            <ol class="carousel-indicators" id="productsIndicator"></ol>
+            <div class="carousel-inner" id="productsInner"></div>
+            <a class="carousel-control-prev bg-dark" style="width: 42px;" href="#products" role="button"
+                data-slide="prev" data-toggle="tooltip" data-placement="right" title="Anterior">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next bg-dark" style="width: 42px;" href="#products" role="button"
+                data-slide="next" data-toggle="tooltip" data-placement="left" title="Siguiente">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Siguiente</span>
+            </a>
+        </div>
+        <div id="productModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="productName" class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input id="productId" type="hidden" class="form-control" aria-label="id">
+                        <div class="row">
+                            <div class="col">
+                                <img id="productImage" class="card-img-top">
+                            </div>
+                            <div class="col">
+                                <p id="productDescription"></p>
+                                <h5 id="productPrice"></h5>
+                                <div class="input-group mb-3 mt-3">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="countAlter('less')">-</button>
+                                    </div>
+                                    <input id="productCount" type="number" class="form-control" aria-label="price"
+                                        value="0">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            onclick="countAlter('add')">+</button>
+                                    </div>
+                                </div>
+                                <button id="addProduct" type="button" class="btn btn-primary"
+                                    onclick="addProduct()">Agregar al
+                                    carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark mt-5 pt-5 pb-5 d-flex justify-content-around">
+        <div class="text-white">
+            <h3>Horario</h3>
+            <p>Lun-Vie: 9:00am - 5:30pm</p>
+            <p>Sáb: 9:00am - 5:00pm</p>
+            <p>Dom: 10:00am - 3:00pm</p>
+        </div>
+        <div class="text-white">
+            <h3>Información</h3>
+            <ul>
+                <li>Acerca de Nosotros</li>
+                <li>Políticas de Envío</li>
+                <li>Políticas de Privacidad</li>
+                <li>Términos y Condiciones</li>
+            </ul>
+        </div>
+        <div class="text-white">
+            <h3>Contáctenos</h3>
+            <ul>
+                <li>Escríbanos</li>
+                <li>info@costaricaflores.com</li>
+                <li>+506 2280-1293</li>
+                <li>+506 2234-5714</li>
+                <li>7124-0900</li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+</html>
